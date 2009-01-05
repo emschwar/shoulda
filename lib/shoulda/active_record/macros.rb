@@ -62,9 +62,9 @@ module ThoughtBot # :nodoc:
         #   should_require_attributes :name, :phone_number
         #
         def should_require_attributes(*attributes)
-          message = get_options!(attributes, :message)
+          klass, message = get_options!(attributes, :class, :message)
           message ||= default_error_message(:blank)
-          klass = model_class
+          klass   ||= model_class
 
           attributes.each do |attribute|
             should "require #{attribute} to be set" do
